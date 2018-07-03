@@ -6,13 +6,94 @@
     android:layout_height="match_parent"
     tools:context=".home.HomeActivity">
 
-    <TextView
-        android:layout_width="match_parent"
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/etHomeUser"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/app_name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:hint="@string/hint_username"
+        android:inputType="text"
+        android:maxLines="1"
+        app:layout_constraintEnd_toStartOf="@id/btnHomeSearch"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btnHomeSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:background="@android:color/white"
+        android:gravity="center"
+        android:text="@string/btn_search"
+        app:layout_constraintBaseline_toBaselineOf="@id/etHomeUser"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvHomeNotFound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="No :("
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tvHomeUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/etHomeUser"
+        tools:text="Sierisimo"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tvHomeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textSize="24sp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/tvHomeUsername"
+        tools:text="Sier Violencia"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tvHomePublicRepo_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:text="@string/label_public_repos"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/tvHomeName"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tvHomePublicRepo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="18dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@id/tvHomePublicRepo_label"
+        app:layout_constraintTop_toBottomOf="@id/tvHomeName"
+        tools:text="9"
+        tools:visibility="visible" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btnHomePublicRepo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:background="@android:color/white"
+        android:text="@string/btn_view"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHomeName"
+        tools:visibility="visible" />
 </android.support.constraint.ConstraintLayout>

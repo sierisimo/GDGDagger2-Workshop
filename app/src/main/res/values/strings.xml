@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">GDG Github</string>
+
+    <string name="hint_username">Usuario</string>
+
+    <string name="label_public_repos">Repositorios Publicos:</string>
+
+    <string name="btn_search">Buscar</string>
+    <string name="btn_view">Ver</string>
+    
+    <string name="formatted_notfound">Usuario: %1$s No encontrado :(</string>
 </resources>

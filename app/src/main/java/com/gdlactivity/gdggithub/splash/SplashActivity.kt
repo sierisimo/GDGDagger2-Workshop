@@ -1,6 +1,7 @@
 package com.gdlactivity.gdggithub.splash
 
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import com.gdlactivity.gdggithub.R
 import com.gdlactivity.gdggithub.home.HomeActivity
@@ -12,13 +13,14 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        nextActivity("")
+        nextActivity()
     }
 
-    private fun nextActivity(title: String) {
-        launchActivity<HomeActivity> {
-            putExtra("title", title)
-        }
-        finish()
+    private fun nextActivity() {
+        Handler().postDelayed({
+            launchActivity<HomeActivity> {}
+
+            finish()
+        }, 1500)
     }
 }
