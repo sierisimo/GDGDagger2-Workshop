@@ -46,9 +46,7 @@ class RepoListActivity : AppCompatActivity() {
                         Log.i("RepoList:OnResponse", "List fetched: $repositoryList")
 
                         repositoryList?.let {
-                            rvRepo.adapter = RepoAdapter().apply {
-                                this.repositoryList = it
-                            }
+                            rvRepo.adapter = RepoAdapter(it)
                         }
                     } else {
                         Log.i("RepoList:OnResponse", "No success")

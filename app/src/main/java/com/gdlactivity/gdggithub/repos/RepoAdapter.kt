@@ -8,9 +8,7 @@ import com.gdlactivity.gdggithub.R
 import com.gdlactivity.gdggithub.data.github.repository.GithubRepository
 import kotlinx.android.synthetic.main.item_repository.view.*
 
-class RepoAdapter : RecyclerView.Adapter<RepoAdapter.RepoViewHolder>() {
-    var repositoryList: List<GithubRepository> = emptyList()
-
+class RepoAdapter(private val repositoryList: List<GithubRepository>) : RecyclerView.Adapter<RepoAdapter.RepoViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoViewHolder {
         return RepoViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_repository, parent, false))
     }
