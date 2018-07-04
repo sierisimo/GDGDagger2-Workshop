@@ -9,13 +9,14 @@ import com.gdlactivity.gdggithub.api.GithubService
 import com.gdlactivity.gdggithub.app.GDGApp
 import com.gdlactivity.gdggithub.data.github.repository.GithubRepository
 import com.gdlactivity.gdggithub.data.github.user.GithubUser
+import com.gdlactivity.gdggithub.di.DependencyProvider
 import kotlinx.android.synthetic.main.activity_repo_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class RepoListActivity : AppCompatActivity() {
-    val githubService: GithubService = (application as GDGApp).githubService
+    val githubService: GithubService = DependencyProvider.githubService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
