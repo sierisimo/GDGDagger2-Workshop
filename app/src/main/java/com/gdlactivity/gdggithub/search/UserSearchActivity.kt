@@ -8,7 +8,6 @@ import com.gdlactivity.gdggithub.R
 import com.gdlactivity.gdggithub.api.GithubService
 import com.gdlactivity.gdggithub.app.GDGApp
 import com.gdlactivity.gdggithub.data.github.user.GithubUser
-import com.gdlactivity.gdggithub.di.DependencyProvider
 import com.gdlactivity.gdggithub.repos.RepoListActivity
 import com.gdlactivity.gdggithub.util.launchActivity
 import com.gdlactivity.gdggithub.util.stringText
@@ -18,11 +17,14 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class UserSearchActivity : AppCompatActivity() {
-    val githubService: GithubService = DependencyProvider.githubService
+    lateinit var githubService: GithubService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        githubService = (application as GDGApp).dependencyComponent.gitHubService()
+
         initViews()
     }
 
