@@ -1,6 +1,7 @@
 package com.gdlactivity.gdggithub.di
 
 import com.gdlactivity.gdggithub.api.GithubService
+import com.gdlactivity.gdggithub.api.HypoteticGithubService
 
 object DependencyProvider {
     val parserModule = ParserModule()
@@ -13,4 +14,6 @@ object DependencyProvider {
             //Also this is wrong… the object should know by itself that it has a restClient…
             serviceModule.getRestClient(parserModule)
         )
+
+    val hypoteticGithubService = HypoteticGithubService()
 }

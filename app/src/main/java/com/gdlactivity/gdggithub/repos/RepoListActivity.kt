@@ -16,7 +16,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class RepoListActivity : AppCompatActivity() {
-    val githubService: GithubService = DependencyProvider.githubService
+    //val githubService: GithubService = DependencyProvider.githubService
+    val githubService: GithubService = DependencyProvider.hypoteticGithubService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
