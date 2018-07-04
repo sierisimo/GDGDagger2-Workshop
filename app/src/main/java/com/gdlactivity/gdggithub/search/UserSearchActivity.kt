@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import com.gdlactivity.gdggithub.R
+import com.gdlactivity.gdggithub.api.GithubService
 import com.gdlactivity.gdggithub.app.GDGApp
 import com.gdlactivity.gdggithub.data.github.user.GithubUser
 import com.gdlactivity.gdggithub.repos.RepoListActivity
@@ -16,16 +17,17 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class UserSearchActivity : AppCompatActivity() {
+    val githubService: GithubService = (application as GDGApp).githubService
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         initViews()
     }
 
     fun initViews() {
         btnHomeSearch.setOnClickListener {
-            (application as GDGApp).githubService.getUserInfo(etHomeUser.stringText)
+            githubService.getUserInfo(etHomeUser.stringText)
                 .enqueue(object : Callback<GithubUser> {
                     override fun onFailure(call: Call<GithubUser>?, t: Throwable?) {
                         Log.e("UserSearch:OnFailure", "Error calling for user", t)
