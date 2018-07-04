@@ -2,12 +2,14 @@ package com.gdlactivity.gdggithub.di
 
 import com.gdlactivity.gdggithub.api.GithubService
 import retrofit2.Retrofit
+import javax.inject.Singleton
+
 
 class ServiceModule {
 
-    //This method always return a new object!
-    fun getRestClient(parserModule: ParserModule): Retrofit {
-        return Retrofit.Builder()
+    @Singleton
+    fun getRestClient(parserModule: ParserModule): Retrofit =
+        Retrofit.Builder()
             .baseUrl("https://api.github.com")
             .addConverterFactory(
                 //How could I know that I needed a call from the same object to build dependency?
@@ -17,10 +19,9 @@ class ServiceModule {
                 )
             )
             .build()
-    }
 
-    //Always a new Object!!
-    fun getGithubService(restClient: Retrofit): GithubService {
-        return restClient.create(GithubService::class.java)
-    }
+    @Singleton
+    fun getGithubService(restClient: Retrofit): GithubService =
+        restClient.create(GithubService::class.java)
+
 }
