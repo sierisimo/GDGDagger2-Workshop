@@ -16,8 +16,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class RepoListActivity : AppCompatActivity() {
-    //val githubService: GithubService = DependencyProvider.githubService
-    val githubService: GithubService = DependencyProvider.hypoteticGithubService
+    lateinit var githubService: GithubService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +26,8 @@ class RepoListActivity : AppCompatActivity() {
         rvRepo.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
         val user: GithubUser = intent.extras?.getParcelable("USER") as GithubUser
+
+        githubService = (application as GDGApp).dependencyProvider.githubService!!
 
         fetchRepos(user)
     }
