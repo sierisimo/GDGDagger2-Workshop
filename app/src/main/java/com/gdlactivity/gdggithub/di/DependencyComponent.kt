@@ -10,7 +10,7 @@ import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [ParserModule::class, ServiceModule::class])
+@Component(modules = [ParserModule::class, ServiceModule::class, SearchModule::class])
 interface DependencyComponent {
     fun moshi(): Moshi
     fun factory(): Converter.Factory
