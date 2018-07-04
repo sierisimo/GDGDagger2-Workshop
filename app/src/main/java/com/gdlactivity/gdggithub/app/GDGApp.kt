@@ -3,21 +3,17 @@ package com.gdlactivity.gdggithub.app
 import android.app.Application
 import com.gdlactivity.gdggithub.api.GithubService
 import com.gdlactivity.gdggithub.di.ParserModule
-import retrofit2.Retrofit
+import com.gdlactivity.gdggithub.di.ServiceModule
 
 class GDGApp : Application() {
     val parserModule = ParserModule()
 
-    val restClient: Retrofit = Retrofit.Builder()
-        .baseUrl("https://api.github.com")
-        .addConverterFactory(
-            parserModule.provideMoshiParserFactory(
-                parserModule.provideMoshiParser()
-            )
-        )
-        .build()
+    val serviceModule = ServiceModule()
 
-    val githubService: GithubService = restClient.create(GithubService::class.java)
+    val githubService: GithubService =
+        serviceModule.getGithubService(
+            serviceModule.getRestClient(parserModule)
+        )
 
     override fun onCreate() {
         super.onCreate()
