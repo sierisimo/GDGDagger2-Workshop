@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import com.gdlactivity.gdggithub.R
 import com.gdlactivity.gdggithub.api.GithubService
+import com.gdlactivity.gdggithub.app.GDGApp
 import com.gdlactivity.gdggithub.data.github.repository.GithubRepository
 import com.gdlactivity.gdggithub.data.github.user.GithubUser
 import com.squareup.moshi.Moshi
@@ -55,10 +56,13 @@ class RepoListActivity : AppCompatActivity() {
                         Log.i("RepoList:OnResponse", "List fetched: $repositoryList")
 
                         repositoryList?.let {
-                            rvRepo.adapter = RepoAdapter(it)
+                            rvRepo.adapter = RepoAdapter().apply {
+                                this.repositoryList = it
+                            }
                         }
                     } else {
                         Log.i("RepoList:OnResponse", "No success")
+
                     }
                 }
             })

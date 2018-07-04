@@ -8,7 +8,9 @@ import com.gdlactivity.gdggithub.R
 import com.gdlactivity.gdggithub.data.github.repository.GithubRepository
 import kotlinx.android.synthetic.main.item_repository.view.*
 
-class RepoAdapter(private val repositoryList: List<GithubRepository>) : RecyclerView.Adapter<RepoAdapter.RepoViewHolder>() {
+class RepoAdapter : RecyclerView.Adapter<RepoAdapter.RepoViewHolder>() {
+    var repositoryList: List<GithubRepository> = emptyList()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoViewHolder {
         return RepoViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_repository, parent, false))
     }
@@ -18,6 +20,7 @@ class RepoAdapter(private val repositoryList: List<GithubRepository>) : Recycler
     override fun onBindViewHolder(holder: RepoViewHolder, position: Int) {
         holder.setName(repositoryList[position].name)
         holder.setStarCount(repositoryList[position].stargazers_count)
+        holder.setWatchCount(repositoryList[position].watchers_count)
     }
 
     class RepoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -27,6 +30,10 @@ class RepoAdapter(private val repositoryList: List<GithubRepository>) : Recycler
 
         fun setStarCount(count: Long) {
             itemView.tvItRepoStar.text = "$count"
+        }
+
+        fun setWatchCount(count: Long){
+            itemView.tvItRepoWatcher.text = "$count"
         }
     }
 }
