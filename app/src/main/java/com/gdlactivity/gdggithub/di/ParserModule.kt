@@ -9,6 +9,7 @@ class ParserModule {
         return MoshiConverterFactory.create(moshi)
     }
 
+    //Always a new moshi!!!
     fun provideMoshiParser(): Moshi {
         return Moshi.Builder().build()
     }
