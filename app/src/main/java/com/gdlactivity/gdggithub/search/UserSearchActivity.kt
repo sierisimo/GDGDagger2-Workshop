@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import com.gdlactivity.gdggithub.R
-import com.gdlactivity.gdggithub.api.GithubService
 import com.gdlactivity.gdggithub.app.GDGApp
 import com.gdlactivity.gdggithub.data.github.user.GithubUser
 import com.gdlactivity.gdggithub.repos.RepoListActivity
@@ -26,8 +25,7 @@ class UserSearchActivity : AppCompatActivity() {
 
     fun initViews() {
         btnHomeSearch.setOnClickListener {
-            val githubService = (application as GDGApp).restClient.create(GithubService::class.java)
-            githubService.getUserInfo(etHomeUser.stringText)
+            (application as GDGApp).githubService.getUserInfo(etHomeUser.stringText)
                 .enqueue(object : Callback<GithubUser> {
                     override fun onFailure(call: Call<GithubUser>?, t: Throwable?) {
                         Log.e("UserSearch:OnFailure", "Error calling for user", t)

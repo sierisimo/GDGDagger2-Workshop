@@ -15,7 +15,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class RepoListActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_repo_list)
@@ -29,9 +28,7 @@ class RepoListActivity : AppCompatActivity() {
     }
 
     fun fetchRepos(user: GithubUser) {
-        val githubService = (application as GDGApp).restClient.create(GithubService::class.java)
-
-        githubService.getUserRepos(user.login)
+        (application as GDGApp).githubService.getUserRepos(user.login)
             .enqueue(object : Callback<List<GithubRepository>> {
                 override fun onFailure(call: Call<List<GithubRepository>>?, t: Throwable?) {
                     Log.e("RepoList:OnFailure", "Error calling for user", t)
