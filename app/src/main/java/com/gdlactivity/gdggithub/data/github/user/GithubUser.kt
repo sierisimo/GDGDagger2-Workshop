@@ -1,8 +1,11 @@
 package com.gdlactivity.gdggithub.data.github.user
 
+import android.os.Parcelable
 import com.squareup.moshi.JsonClass
+import kotlinx.android.parcel.Parcelize
 
 @JsonClass(generateAdapter = true)
+@Parcelize
 data class GithubUser(
     val login: String,
     val id: Long,
@@ -24,4 +27,4 @@ data class GithubUser(
     val following: Long, //9,
     val created_at: String, //"2011-01-25T18:44:36Z",
     val updated_at: String //"2018-06-23T04:11:11Z"
-)
+) : Parcelable

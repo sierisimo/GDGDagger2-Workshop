@@ -1,12 +1,15 @@
-package com.gdlactivity.gdggithub.home
+package com.gdlactivity.gdggithub.search
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import com.gdlactivity.gdggithub.R
 import com.gdlactivity.gdggithub.api.GithubService
 import com.gdlactivity.gdggithub.data.github.user.GithubUser
+import com.gdlactivity.gdggithub.repos.RepoListActivity
+import com.gdlactivity.gdggithub.util.launchActivity
 import com.gdlactivity.gdggithub.util.stringText
 import com.squareup.moshi.Moshi
 import kotlinx.android.synthetic.main.activity_main.*
@@ -16,7 +19,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-class HomeActivity : AppCompatActivity() {
+class UserSearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -38,20 +41,12 @@ class HomeActivity : AppCompatActivity() {
             githubService.getUserInfo(etHomeUser.stringText)
                 .enqueue(object : Callback<GithubUser> {
                     override fun onFailure(call: Call<GithubUser>?, t: Throwable?) {
-                        Log.e("HomeActivity:OnFailure", "Error calling for user", t)
-                        tvHomeUsername.visibility = View.GONE
-                        tvHomeName.visibility = View.GONE
-                        tvHomePublicRepo_label.visibility = View.GONE
-                        tvHomePublicRepo.visibility = View.GONE
-                        btnHomePublicRepo.visibility = View.GONE
-
-                        tvHomeNotFound.visibility = View.VISIBLE
-                        tvHomeNotFound.text = getString(R.string.formatted_notfound, etHomeUser.stringText)
+                        Log.e("UserSearch:OnFailure", "Error calling for user", t)
+                        hideViews()
                     }
 
                     override fun onResponse(call: Call<GithubUser>?, response: Response<GithubUser>) {
-                        Log.i("HomeActivity:OnResponse", "Response: $response")
-                        Log.i("HomeActivity:OnResponse", "Body: ${response.body()}")
+                        Log.i("UserSearch:OnResponse", "Body: ${response.body()}")
 
                         if (response.isSuccessful) {
                             val githubUser = response.body()
@@ -73,20 +68,27 @@ class HomeActivity : AppCompatActivity() {
                                 btnHomePublicRepo.visibility = View.VISIBLE
                                 btnHomePublicRepo.setOnClickListener {
                                     Log.i("OnResponse", "Click public repos")
+                                    launchActivity<RepoListActivity> {
+                                        putExtra("USER", githubUser)
+                                    }
                                 }
                             }
                         } else {
-                            tvHomeName.visibility = View.GONE
-                            tvHomeUsername.visibility = View.GONE
-                            tvHomePublicRepo_label.visibility = View.GONE
-                            tvHomePublicRepo.visibility = View.GONE
-                            btnHomePublicRepo.visibility = View.GONE
-
-                            tvHomeNotFound.visibility = View.VISIBLE
-                            tvHomeNotFound.text = getString(R.string.formatted_notfound, etHomeUser.stringText)
+                           hideViews()
                         }
                     }
                 })
         }
+    }
+
+    fun hideViews(){
+        tvHomeName.visibility = View.GONE
+        tvHomeUsername.visibility = View.GONE
+        tvHomePublicRepo_label.visibility = View.GONE
+        tvHomePublicRepo.visibility = View.GONE
+        btnHomePublicRepo.visibility = View.GONE
+
+        tvHomeNotFound.visibility = View.VISIBLE
+        tvHomeNotFound.text = getString(R.string.formatted_notfound, etHomeUser.stringText)
     }
 }

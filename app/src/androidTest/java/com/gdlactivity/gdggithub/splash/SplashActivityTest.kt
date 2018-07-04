@@ -8,7 +8,7 @@ import android.support.test.filters.SmallTest
 import android.support.test.runner.AndroidJUnit4
 import android.support.test.runner.lifecycle.ActivityLifecycleMonitorRegistry
 import android.support.test.runner.lifecycle.Stage
-import com.gdlactivity.gdggithub.home.HomeActivity
+import com.gdlactivity.gdggithub.search.UserSearchActivity
 import org.hamcrest.CoreMatchers.instanceOf
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertThat
@@ -39,12 +39,12 @@ class SplashActivityTest {
             assertNotNull(activities)
             assertNotNull(activities.first())
 
-            assertThat(activities.first(), instanceOf(HomeActivity::class.java))
+            assertThat(activities.first(), instanceOf(UserSearchActivity::class.java))
         }
     }
 
     @Test
     fun testSomeIntended() {
-        intended(hasComponent(HomeActivity::class.java.name))
+        intended(hasComponent(UserSearchActivity::class.java.name))
     }
 }

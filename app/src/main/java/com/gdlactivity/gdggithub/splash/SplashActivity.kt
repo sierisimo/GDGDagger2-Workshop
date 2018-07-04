@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import com.gdlactivity.gdggithub.R
-import com.gdlactivity.gdggithub.home.HomeActivity
+import com.gdlactivity.gdggithub.search.UserSearchActivity
 import com.gdlactivity.gdggithub.util.launchActivity
 
 class SplashActivity : AppCompatActivity() {
@@ -18,7 +18,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun nextActivity() {
         Handler().postDelayed({
-            launchActivity<HomeActivity> {}
+            launchActivity<UserSearchActivity> {}
 
             finish()
         }, 1500)

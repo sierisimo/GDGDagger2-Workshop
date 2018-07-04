@@ -5,8 +5,10 @@
 
     <string name="label_public_repos">Repositorios Publicos:</string>
 
+    <string name="label_fetching_repo">Buscando repositorios…</string>
+
     <string name="btn_search">Buscar</string>
     <string name="btn_view">Ver</string>
-    
+
     <string name="formatted_notfound">Usuario: %1$s No encontrado :(</string>
 </resources>
