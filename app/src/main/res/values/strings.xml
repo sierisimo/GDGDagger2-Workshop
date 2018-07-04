@@ -4,8 +4,9 @@
     <string name="hint_username">Usuario</string>
 
     <string name="label_public_repos">Repositorios Publicos:</string>
-
     <string name="label_fetching_repo">Buscando repositorios…</string>
+
+    <string name="error_no_repos">No se encontraron repositorios</string>
 
     <string name="btn_search">Buscar</string>
     <string name="btn_view">Ver</string>

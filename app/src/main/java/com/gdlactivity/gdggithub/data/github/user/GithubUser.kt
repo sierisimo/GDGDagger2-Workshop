@@ -1,9 +1,11 @@
 package com.gdlactivity.gdggithub.data.github.user
 
+import android.annotation.SuppressLint
 import android.os.Parcelable
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 
+@SuppressLint("ParcelCreator")
 @JsonClass(generateAdapter = true)
 @Parcelize
 data class GithubUser(
