@@ -1,6 +1,8 @@
 package com.gdlactivity.gdggithub.di
 
 import com.gdlactivity.gdggithub.api.GithubService
+import com.gdlactivity.gdggithub.repos.RepoListActivity
+import com.gdlactivity.gdggithub.search.UserSearchActivity
 import com.squareup.moshi.Moshi
 import dagger.Component
 import retrofit2.Converter
@@ -14,4 +16,7 @@ interface DependencyComponent {
     fun factory(): Converter.Factory
     fun retrofit(): Retrofit
     fun gitHubService(): GithubService
+
+    fun inject(repoListActivity: RepoListActivity)
+    fun inject(userSearchActivity: UserSearchActivity)
 }

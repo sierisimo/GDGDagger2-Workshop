@@ -13,8 +13,10 @@ import kotlinx.android.synthetic.main.activity_repo_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
 class RepoListActivity : AppCompatActivity() {
+    @Inject
     lateinit var githubService: GithubService
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +28,7 @@ class RepoListActivity : AppCompatActivity() {
 
         val user: GithubUser = intent.extras?.getParcelable("USER") as GithubUser
 
-        githubService = (application as GDGApp).dependencyComponent.gitHubService()
+        (application as GDGApp).dependencyComponent.inject(this)
 
         fetchRepos(user)
     }

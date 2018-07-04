@@ -15,15 +15,17 @@ import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
 class UserSearchActivity : AppCompatActivity() {
+    @Inject
     lateinit var githubService: GithubService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        githubService = (application as GDGApp).dependencyComponent.gitHubService()
+        (application as GDGApp).dependencyComponent.inject(this)
 
         initViews()
     }
